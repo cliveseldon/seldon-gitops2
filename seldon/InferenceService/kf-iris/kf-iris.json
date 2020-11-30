@@ -14,6 +14,7 @@
             "predictor": {
                 "sklearn": {
                     "storageUri": "gs://kfserving-samples/models/sklearn/iris",
+                    "runtimeVersion": "v0.4.1",
                     "resources": {
                         "limits": {
                             "cpu": "1",
@@ -29,7 +30,28 @@
                     "mode": "all"
                 }
             }
-        }
+        },
+        "canary": {
+            "predictor": {
+                "xgboost": {
+                    "storageUri": "gs://kfserving-samples/models/xgboost/iris",
+                    "resources": {
+                        "limits": {
+                            "cpu": "1",
+                            "memory": "1Gi"
+                        },
+                        "requests": {
+                            "cpu": "100m",
+                            "memory": "1Gi"
+                        }
+                    }
+                },
+                "logger": {
+                    "mode": "all"
+                }
+            }
+        },
+        "canaryTrafficPercent": 10
     },
     "status": {}
 }
