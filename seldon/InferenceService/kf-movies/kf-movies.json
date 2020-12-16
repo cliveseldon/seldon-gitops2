@@ -1,0 +1,37 @@
+{
+    "kind": "InferenceService",
+    "apiVersion": "serving.kubeflow.org/v1alpha2",
+    "metadata": {
+        "name": "kf-movies",
+        "namespace": "seldon",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "default": {
+            "predictor": {
+                "sklearn": {
+                    "storageUri": "gs://seldon-models/sklearn/moviesentiment",
+                    "resources": {
+                        "limits": {
+                            "cpu": "1",
+                            "memory": "1Gi"
+                        },
+                        "requests": {
+                            "cpu": "100m",
+                            "memory": "1Gi"
+                        }
+                    }
+                },
+                "minReplicas": 1,
+                "maxReplicas": 3,
+                "logger": {
+                    "mode": "all"
+                }
+            }
+        }
+    },
+    "status": {}
+}
